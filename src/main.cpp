@@ -1,6 +1,8 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "./include/loadShader.h"
+#include "./include/uniform.h"
 void framebuffer_soize_callback(GLFWwindow* pWindow, int iWidth, int iHeight);
 void processInput(GLFWwindow* pWinow);
 int main(int argc, char *argv[])
@@ -24,13 +26,14 @@ int main(int argc, char *argv[])
     } 
     glfwSetFramebufferSizeCallback(pWinow,framebuffer_soize_callback);
     // reder loop
-    GLfloat fRed = 0.01f;
+
     while(!glfwWindowShouldClose(pWinow)){
         // input
         processInput(pWinow);
         // redering command
-        glClearColor(fRed + 0.01 > 1.0f ? fRed = 0.01f : fRed = fRed + 0.01,0.25f,0.25f,1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.5,0.0f,0.0f,0.01f);
+        // glClear(GL_COLOR_BUFFER_BIT);
+        uniformLoadShaders();
         // check and call events and swap the bufffers
         glfwSwapBuffers(pWinow);
         glfwPollEvents();
