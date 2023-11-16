@@ -10,7 +10,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\MinGW\\MinGW\\bin\\g++.exe",
+            "compilerPath": "C:\\Qt\\Qt5.13.1\\5.13.1\\msvc2017_64\\bin\\gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x86"

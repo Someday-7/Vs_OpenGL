@@ -5,5 +5,9 @@
 #include <GLFW/glfw3.h>
 #include <string.h>
 #include <map>
+#include "global_func.h"
+#include "loadShader.h"
 extern void uniformLoadShaders();
+
+extern int uniformDemo();
 #endif
