@@ -1,13 +1,6 @@
 #include "./include/texture.h"
-
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <stb_image.h>
-
 #include "./include/MyShader.h"
-
-#include <iostream>
+#include "./include/stbimage_loader.h"
 
 int glTextureDemo()
 {
@@ -104,19 +97,20 @@ int glTextureDemo()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
-    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    unsigned char *data = stbi_load("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\wood.jpg", &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
+    stb_image_loader("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\wood.jpg", width, height, nrChannels, 0);
+    // stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+    // // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+    // unsigned char *data = stbi_load("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\wood.jpg", &width, &height, &nrChannels, 0);
+    // if (data)
+    // {
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    //     glGenerateMipmap(GL_TEXTURE_2D);
+    // }
+    // else
+    // {
+    //     std::cout << "Failed to load texture" << std::endl;
+    // }
+    // stbi_image_free(data);
     // texture 2
     // ---------
     glGenTextures(1, &texture2);
@@ -128,18 +122,19 @@ int glTextureDemo()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // set texture filtering to nearest neighbor to clearly see the texels/pixels
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     // load image, create texture and generate mipmaps
-    data = stbi_load("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\dog.jpg", &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        // note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
+    stb_image_loader("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\dog.jpg", width, height, nrChannels, 0);
+    // data = stbi_load("D:\\WorkSpace\\OpenGL\\git_sync\\Vs_OpenGL\\glsl\\dog.jpg", &width, &height, &nrChannels, 0);
+    // if (data)
+    // {
+    //     // note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    //     glGenerateMipmap(GL_TEXTURE_2D);
+    // }
+    // else
+    // {
+    //     std::cout << "Failed to load texture" << std::endl;
+    // }
+    // stbi_image_free(data);
 
     // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
     // -------------------------------------------------------------------------------------------
@@ -147,6 +142,7 @@ int glTextureDemo()
     // // either set it manually like so:
     glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
     // // //or set it via the texture class
+    ourShader.setInt("texture1", 0);
     ourShader.setInt("texture2", 1);
  
     // render loop
@@ -166,13 +162,43 @@ int glTextureDemo()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
         
-        
+        ourShader.use();
         // set the texture mix value in the shader
         ourShader.setFloat("mixValue", mixValue);
+#if 0
+        // create transformations
+        glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        transform = glm::translate(transform, glm::vec3(0.0f, 0.5f, 0.0f));
+        transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+        
+        // get matrix's uniform location and set matrix
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
         // render container
-        ourShader.use();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+#else
+        glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        // first container
+        // ---------------
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        // get their uniform location and set matrix (using glm::value_ptr)
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        // second transformation
+        // ---------------------
+        transform = glm::mat4(1.0f); // reset it to identity matrix
+        transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+        float scaleAmount = static_cast<float>(sin(glfwGetTime()));
+        transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, &transform[0][0]); // this time take the matrix value array's first element as its memory pointer value
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+#endif
+
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

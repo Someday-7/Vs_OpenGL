@@ -1,17 +1,21 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#if 0
 #include "./include/uniform.h"
 #include "./include/triangles_one.h"
 #include "./include/rectangle.h"
 #include "./include/texture.h"
+#include "./include/transformation.h"
+#else 
+#include "./include/coordinateSys.h"
+#endif
 int main(int argc, char *argv[])
 {
     int iRet = 0;
     //iRet = uniformDemo();
     //iRet = glTrangledDemo();
     //iRet = glRectangleDemo();
-    iRet = glTextureDemo();
+    //iRet = glTextureDemo();
+    //iRet = glTransformationDemo();
+    iRet = glCoordinateSysDemo();
     std::cout<<"Ret: "<<iRet<<std::endl;
     return 0;
 }
