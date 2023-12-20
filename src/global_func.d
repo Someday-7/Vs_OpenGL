@@ -176,4 +176,4 @@ src/global_func.o: src/global_func.cpp src/./include/global_func.h \
  include/glm/gtc/../gtc/../ext/vector_int1_sized.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
- include/glm/gtc/type_ptr.inl
+ include/glm/gtc/type_ptr.inl src/./include/camera.h

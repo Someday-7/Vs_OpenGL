@@ -176,4 +176,5 @@ src/uniform.o: src/uniform.cpp src/./include/loadShader.h \
  include/glm/gtc/../gtc/../ext/vector_int1_sized.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
- include/glm/gtc/type_ptr.inl src/./include/loadShader.h
+ include/glm/gtc/type_ptr.inl src/./include/camera.h \
+ src/./include/loadShader.h

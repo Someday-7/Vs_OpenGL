@@ -1,4 +1,4 @@
-src/main.o: src/main.cpp src/./include/coordinateSys.h \
+src/main.o: src/main.cpp src/./include/cameraSys.h \
  src/./include/global_func.h include/glad/glad.h \
  include/KHR/khrplatform.h include/GLFW/glfw3.h include/glm/glm.hpp \
  include/glm/detail/_fixes.hpp include/glm/detail/setup.hpp \
@@ -176,4 +176,4 @@ src/main.o: src/main.cpp src/./include/coordinateSys.h \
  include/glm/gtc/../gtc/../ext/vector_int1_sized.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
- include/glm/gtc/type_ptr.inl
+ include/glm/gtc/type_ptr.inl src/./include/camera.h

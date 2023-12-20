@@ -4,8 +4,9 @@
 #include "./include/rectangle.h"
 #include "./include/texture.h"
 #include "./include/transformation.h"
-#else 
 #include "./include/coordinateSys.h"
+#else 
+#include "./include/cameraSys.h"
 #endif
 int main(int argc, char *argv[])
 {
@@ -15,7 +16,8 @@ int main(int argc, char *argv[])
     //iRet = glRectangleDemo();
     //iRet = glTextureDemo();
     //iRet = glTransformationDemo();
-    iRet = glCoordinateSysDemo();
+    //iRet = glCoordinateSysDemo();
+    iRet = cameraSysDemo();
     std::cout<<"Ret: "<<iRet<<std::endl;
     return 0;
 }

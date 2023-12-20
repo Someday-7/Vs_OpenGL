@@ -176,5 +176,5 @@ src/texture.o: src/texture.cpp src/./include/texture.h \
  include/glm/gtc/../gtc/../ext/vector_int1_sized.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
- include/glm/gtc/type_ptr.inl src/./include/MyShader.h \
- src/./include/stbimage_loader.h
+ include/glm/gtc/type_ptr.inl src/./include/camera.h \
+ src/./include/MyShader.h src/./include/stbimage_loader.h
