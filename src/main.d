@@ -1,4 +1,4 @@
-src/main.o: src/main.cpp src/./include/cameraSys.h \
+src/main.o: src/main.cpp src/./include/material.h \
  src/./include/global_func.h include/glad/glad.h \
  include/KHR/khrplatform.h include/GLFW/glfw3.h include/glm/glm.hpp \
  include/glm/detail/_fixes.hpp include/glm/detail/setup.hpp \
