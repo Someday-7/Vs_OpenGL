@@ -14,7 +14,6 @@ class QTextEdit;
 class QComboBox;
 class QCloseEvent;
 class QLineEdit;
-class GLWidget;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,7 +29,6 @@ public:
     void initSARibbon();
 private:
     Ui::MainWindow *ui;
-    GLWidget* m_pGLWidget;
     // 创建ribbon-application菜单示例
     void createRibbonApplicationButton();
     // 创建main菜单示例

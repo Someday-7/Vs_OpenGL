@@ -27,7 +27,6 @@
 #include <QShortcut>
 #include <QLineEdit>
 #include <QDialogButtonBox>
-#include "GLWidget.h"
 
 #define PRINT_COST_START()                                                                                             \
     QElapsedTimer __TMP_COST;                                                                                          \
@@ -50,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
     , mMenuApplicationBtn(nullptr)
 {
     ui->setupUi(this);
-    m_pGLWidget = new GLWidget(this);
     initSARibbon();
 }
 
@@ -68,14 +66,11 @@ void MainWindow::initSARibbon()
 #endif
     setWindowTitle(("ribbon mainwindow test"));
     mTextedit = new QTextEdit(this);
-    QVBoxLayout* playOut = new QVBoxLayout;
-    playOut->addWidget(mTextedit);
-    playOut->addWidget(m_pGLWidget);
-    playOut->setStretch(0,1);
-    playOut->setStretch(1,10);
-    QWidget* pWidget = new QWidget;
-    pWidget->setLayout(playOut);
-    setCentralWidget(pWidget);
+//    QVBoxLayout* playOut = new QVBoxLayout;
+//    playOut->addWidget(mTextedit);
+//    QWidget* pWidget = new QWidget;
+//    pWidget->setLayout(playOut);
+    setCentralWidget(mTextedit);
     setStatusBar(new QStatusBar());
 
     SARibbonBar* ribbon = ribbonBar();
