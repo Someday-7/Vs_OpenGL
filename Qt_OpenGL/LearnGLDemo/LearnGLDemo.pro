@@ -7,22 +7,28 @@ LIBS += $$PWD/lib/libglad.a
 INCLUDEPATH += $$PWD/include
 
 SOURCES += \
+    Camera.cpp \
     GLWidget.cpp \
+    MyShader.cpp \
     RenderBase.cpp \
     RenderManager.cpp \
+    Simple/cameraSys.cpp \
     Simple/rectangle.cpp \
-    loadShader.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    stbimage_loader.cpp
 
 HEADERS += \
+    Camera.h \
     GLWidget.h \
+    MyShader.h \
     RenderBase.h \
     RenderManager.h \
+    Simple/cameraSys.h \
     Simple/rectangle.h \
     global_func.h \
-    loadShader.h \
-    mainwindow.h
+    mainwindow.h \
+    stbimage_loader.h
 
 FORMS += \
     mainwindow.ui

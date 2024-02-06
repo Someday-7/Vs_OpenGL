@@ -15,6 +15,7 @@ RectangleDemo::~RectangleDemo()
 
 bool RectangleDemo::initializeGL()
 {
+    std::cout << "initialize Rectangle Demo" << std::endl;
     if(!gladLoadGL()){
         std::cout << "Failed to initialize GLAD" << std::endl;
         return false;

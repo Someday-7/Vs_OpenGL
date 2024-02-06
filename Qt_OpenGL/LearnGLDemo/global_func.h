@@ -4,19 +4,27 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
 #include <memory>
-#include "RenderBase.h"
 #define STB_IMAGE_IMPLEMENTATION
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-extern float mixValue;
+extern float global_fMixValue;
 // camera
-extern float lastX;
-extern float lastY;
-extern bool firstMouse;
+extern float global_fLastX;
+extern float global_flastY;
+extern bool global_fFirstMouse;
 
 // timing
-extern float deltaTime;	// time between current frame and last frame
-extern float lastFrame;
+extern long long global_llDeltaTime;	// time between current frame and last frame
+extern long long global_llLastFrame;
+
+enum RENDER_OBJECT{
+    RENDER_UBIFORM = 0,
+    RENDER_RECTANGLE,
+    RENDER_END
+};
 #endif

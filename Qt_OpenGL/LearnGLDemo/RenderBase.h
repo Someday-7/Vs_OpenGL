@@ -3,12 +3,8 @@
 
 #include <QObject>
 #include "global_func.h"
-
-enum RENDER_OBJECT{
-    RENDER_UBIFORM = 0,
-    RENDER_RECTANGLE,
-    RENDER_END
-};
+#include "Camera.h"
+#include "MyShader.h"
 
 class RenderBase : public QObject
 {
@@ -17,6 +13,15 @@ public:
     explicit RenderBase(QObject *parent = nullptr);
     virtual bool initializeGL() = 0;
     virtual bool paintGL() = 0;
+    //shader
+
+    //camera
+    void setCameraWheelEvent(QPoint);
+    void setCameraKeyPressed(Qt::Key qKey);
+    void setCameraKeyMouseReleased(Qt::MouseButton, const QPointF& qpFMousePox);
+protected:
+    MyShader m_Shader;
+    Camera  m_Camera;
 signals:
 
 };
