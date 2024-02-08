@@ -2,9 +2,22 @@
 #define RENDERBASE_H
 
 #include <QObject>
-#include "global_func.h"
 #include "Camera.h"
 #include "MyShader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <memory>
+
+enum RENDER_OBJECT{
+    RENDER_UBIFORM = 0,
+    RENDER_RECTANGLE,
+    RENDER_END
+};
 
 class RenderBase : public QObject
 {
@@ -13,15 +26,27 @@ public:
     explicit RenderBase(QObject *parent = nullptr);
     virtual bool initializeGL() = 0;
     virtual bool paintGL() = 0;
-    //shader
+    // shader
 
-    //camera
+    // camera
     void setCameraWheelEvent(QPoint);
     void setCameraKeyPressed(Qt::Key qKey);
     void setCameraKeyMouseReleased(Qt::MouseButton, const QPointF& qpFMousePox);
 protected:
     MyShader m_Shader;
-    Camera  m_Camera;
+    unsigned int SCR_WIDTH = 800;
+    unsigned int SCR_HEIGHT = 600;
+    float m_fMixValue;
+    // camera
+    Camera m_Camera;
+    float m_fLastX;
+    float m_fLastY;
+    bool m_bFirstMouse;
+
+    // timing
+    long long m_llDeltaTime;	// time between current frame and last frame
+    long long m_llLastFrame;
+
 signals:
 
 };

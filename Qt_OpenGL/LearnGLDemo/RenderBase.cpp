@@ -1,5 +1,6 @@
 #include "RenderBase.h"
 #include <QPointF>
+#include <QDebug>
 
 RenderBase::RenderBase(QObject *parent) : QObject(parent)
 {
@@ -8,6 +9,7 @@ RenderBase::RenderBase(QObject *parent) : QObject(parent)
 
 void RenderBase::setCameraWheelEvent(QPoint qpAngleData)
 {
+    qDebug()<<"qpAngleData:"<<qpAngleData;
     m_Camera.ProcessMouseScroll(qpAngleData.y());
 }
 
@@ -17,16 +19,16 @@ void RenderBase::setCameraKeyPressed(Qt::Key qKey)
        exit(0);
     }
     else if(qKey == Qt::Key_W){
-        m_Camera.ProcessKeyboard(FORWARD, global_llDeltaTime);
+        m_Camera.ProcessKeyboard(FORWARD, m_llDeltaTime);
     }
     else if(qKey == Qt::Key_S){
-        m_Camera.ProcessKeyboard(BACKWARD, global_llDeltaTime);
+        m_Camera.ProcessKeyboard(BACKWARD, m_llDeltaTime);
     }
     else if(qKey == Qt::Key_A){
-        m_Camera.ProcessKeyboard(LEFT, global_llDeltaTime);
+        m_Camera.ProcessKeyboard(LEFT, m_llDeltaTime);
     }
     else if(qKey == Qt::Key_D){
-        m_Camera.ProcessKeyboard(RIGHT, global_llDeltaTime);
+        m_Camera.ProcessKeyboard(RIGHT, m_llDeltaTime);
     }
 }
 
@@ -36,18 +38,18 @@ void RenderBase::setCameraKeyMouseReleased(Qt::MouseButton qMouseBtn, const QPoi
         float xpos = qpFMousePox.x();
         float ypos = qpFMousePox.y();
 
-        if (global_fFirstMouse)
+        if (m_bFirstMouse)
         {
-            global_fLastX = xpos;
-            global_flastY = ypos;
-            global_fFirstMouse = false;
+            m_fLastX = xpos;
+            m_fLastY = ypos;
+            m_bFirstMouse = false;
         }
 
-        float xoffset = xpos - global_fLastX;
-        float yoffset = global_flastY - ypos; // reversed since y-coordinates go from bottom to top
+        float xoffset = xpos - m_fLastX;
+        float yoffset = m_fLastY - ypos; // reversed since y-coordinates go from bottom to top
 
-        global_fLastX = xpos;
-        global_flastY = ypos;
+        m_fLastX = xpos;
+        m_fLastY = ypos;
 
         m_Camera.ProcessMouseMovement(xoffset, yoffset);
     }

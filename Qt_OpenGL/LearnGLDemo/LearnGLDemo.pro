@@ -26,7 +26,6 @@ HEADERS += \
     RenderManager.h \
     Simple/cameraSys.h \
     Simple/rectangle.h \
-    global_func.h \
     mainwindow.h \
     stbimage_loader.h
 

@@ -40,18 +40,18 @@ public:
 
 public:
     // camera Attributes
-    glm::vec3 Position;
-    glm::vec3 Front;
-    glm::vec3 Up;
-    glm::vec3 Right;
-    glm::vec3 WorldUp;
+    glm::vec3 m_vec3Position;
+    glm::vec3 m_vec3Front;
+    glm::vec3 m_vec3Up;
+    glm::vec3 m_vec3Right;
+    glm::vec3 m_vec3WorldUp;
     // euler Angles
-    float Yaw;
-    float Pitch;
+    float m_fYaw;
+    float m_fPitch;
     // camera options
-    float MovementSpeed;
-    float MouseSensitivity;
-    float Zoom;
+    float m_fMovementSpeed;
+    float m_fMouseSensitivity;
+    float m_fZoom;
 private:
     // calculates the front vector from the Camera's (updated) Euler Angles
     void updateCameraVectors();

@@ -147,8 +147,8 @@ bool CameraSysDemo::paintGL()
     // per-frame time logic
     // --------------------
     long long llCurrentFrame = QDateTime::currentDateTime().toSecsSinceEpoch();
-    global_llDeltaTime = llCurrentFrame - global_llLastFrame;
-    global_llLastFrame = llCurrentFrame;
+    m_llDeltaTime = llCurrentFrame - m_llLastFrame;
+    m_llLastFrame = llCurrentFrame;
 
     // render
     // ------
@@ -163,9 +163,9 @@ bool CameraSysDemo::paintGL()
 
     // activate shader
     m_Shader.use();
-    m_Shader.setFloat("mixValue", global_fMixValue);
+    m_Shader.setFloat("mixValue", m_fMixValue);
     // pass projection matrix to shader (note that in this case it could change every frame)
-    glm::mat4 projection = glm::perspective(glm::radians(m_Camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(m_Camera.m_fZoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
     m_Shader.setMat4("projection", projection);
 
     // camera/view transformation

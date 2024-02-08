@@ -23,7 +23,7 @@ void GLWidget::initializeGL()
 
 void GLWidget::resizeGL(int iWidth, int height)
 {
-    qDebug()<<__FILE__<<" "<<__FUNCTION__<<" "<<iWidth<<" x "<<height;
+    qDebug()<<__FILE__<<" "<<__FUNCTION__<<" iWidth:"<<iWidth<<" height:"<<height;
 }
 
 void GLWidget::paintGL()

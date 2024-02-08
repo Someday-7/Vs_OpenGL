@@ -1,6 +1,7 @@
 #include "stbimage_loader.h"
 #include <stb_image.h>
 #include <glad/glad.h>
+#include <iostream>
 
 unsigned char* stb_image_loader(const char* pImagePath, int &width, int &height, int &nrChannels, int req_comp)
 {
@@ -17,4 +18,5 @@ unsigned char* stb_image_loader(const char* pImagePath, int &width, int &height,
     {
         std::cout << "Failed to load texture" << std::endl;
     }
+    return nullptr;
 }
