@@ -15,6 +15,7 @@ public:
     std::shared_ptr<RenderBase> getCurrentRenderObj();
 private:
     std::map<RENDER_OBJECT,std::shared_ptr<RenderBase> > m_mapEnumObj;
+    RENDER_OBJECT m_eCurRenderType;
 };
 
 #endif // RENDERMANAGER_H

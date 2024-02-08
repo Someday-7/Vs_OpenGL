@@ -139,7 +139,7 @@ bool CameraSysDemo::initializeGL()
     m_Shader.use();
     m_Shader.setInt("texture1", 0);
     m_Shader.setInt("texture2", 1);
-
+    return true;
 }
 
 bool CameraSysDemo::paintGL()
@@ -185,4 +185,5 @@ bool CameraSysDemo::paintGL()
 
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }
+    return true;
 }
