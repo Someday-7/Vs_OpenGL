@@ -14,6 +14,7 @@ SOURCES += \
     RenderManager.cpp \
     Simple/cameraSys.cpp \
     Simple/rectangle.cpp \
+    Simple/sinWave.cpp \
     main.cpp \
     mainwindow.cpp \
     stbimage_loader.cpp
@@ -26,6 +27,7 @@ HEADERS += \
     RenderManager.h \
     Simple/cameraSys.h \
     Simple/rectangle.h \
+    Simple/sinWave.h \
     mainwindow.h \
     stbimage_loader.h
 
